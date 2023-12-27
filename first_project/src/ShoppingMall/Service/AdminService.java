@@ -58,7 +58,7 @@ public class AdminService {
             } else if (sel == 3) {
                 goodsUpdate();
             } else if (sel == 4) {
-
+                goodsDelete();
             } else if (sel == 5) {
 
             } else if (sel == 6) {
@@ -150,6 +150,18 @@ public class AdminService {
         boolean update = goodsRepository.update(goodsId, goodsName, category, goodsPrice, goodsDetail);
         if (update) {
             System.out.println("수정 완료");
+        } else {
+            System.out.println("ID가 일치하지 않습니다.");
+        }
+    }
+
+    private void goodsDelete() {
+        System.out.println("상품 삭제입니다.");
+        System.out.print("삭제할 상품 ID > ");
+        Long goodsId = sc.nextLong();
+        boolean delete = goodsRepository.goodsDelete(goodsId);
+        if (delete) {
+            System.out.println("삭제 완료");
         } else {
             System.out.println("ID가 일치하지 않습니다.");
         }
