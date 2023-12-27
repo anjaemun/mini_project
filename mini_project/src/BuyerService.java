@@ -8,13 +8,13 @@ public class BuyerService {
     public void buyerMenu() {
         boolean run = true;
         while (run) {
-            System.out.println("=============================================");
-            System.out.println("| 1.마이페이지 | 2.상품 검색 | 3.카테고리 | 0.종료 |");
-            System.out.println("=============================================");
+            System.out.println("========================================================");
+            System.out.println("| 1.마이페이지 | 2.상품 검색 | 3.카테고리 | 4.장바구니 | 0.종료 |");
+            System.out.println("========================================================");
             System.out.print("메뉴 선택 > ");
             int sel = sc.nextInt();
             if (sel == 1) {
-
+                myPage();
             } else if (sel == 2) {
 
             } else if (sel == 3) {
@@ -28,6 +28,14 @@ public class BuyerService {
             }
         }
     }
+
+    private void myPage() {
+        BuyerDTO buyerDTO = buyerRepository.myPage(loginId);
+        if (buyerDTO != null){
+            System.out.println("buyerDTO = " + buyerDTO);
+        }
+    }
+
 
     public void join() {
         System.out.println("회원가입");
@@ -43,7 +51,7 @@ public class BuyerService {
             System.out.println("회원가입 완료");
             System.out.println("감사의 의미로 1,000 point 지급!");
             int point = buyerDTO.getPoint();
-            point += point;
+            point += 1000;
             buyerDTO.setPoint(point);
         } else {
             System.out.println("회원가입 실패");

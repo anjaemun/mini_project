@@ -17,4 +17,14 @@ public class BuyerRepository {
         }
         return false;
     }
+
+    public BuyerDTO myPage(String loginId) {
+        BuyerDTO buyerDTO1 = null;
+        for (BuyerDTO buyerDTO : buyerDTOList) {
+            if (loginId.equals(buyerDTO.getId())) {
+                buyerDTO1 = buyerDTO;
+            }
+        }
+        return buyerDTO1;
+    }
 }
