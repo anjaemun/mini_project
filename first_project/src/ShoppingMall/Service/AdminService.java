@@ -47,7 +47,7 @@ public class AdminService {
             System.out.print("5.주문 목록\t");
             System.out.print("6.입금 내역\t");
             System.out.print("7.발송 처리\t");
-            System.out.println("0.이전");
+            System.out.println("0.이전 메뉴");
             System.out.println("=============================================================");
             System.out.print(" > ");
             int sel = sc.nextInt();
@@ -56,7 +56,7 @@ public class AdminService {
             } else if (sel == 2) {
                 goodsList();
             } else if (sel == 3) {
-
+                goodsUpdate();
             } else if (sel == 4) {
 
             } else if (sel == 5) {
@@ -132,6 +132,26 @@ public class AdminService {
             }
         } else {
             System.out.println("등록된 상품이 없습니다.");
+        }
+    }
+
+    private void goodsUpdate() {
+        System.out.println("상품 수정입니다.");
+        System.out.print("수정할 상품 ID > ");
+        Long goodsId = sc.nextLong();
+        System.out.print("상품명 > ");
+        String goodsName = sc.next();
+        System.out.print("카테고리 > ");
+        String category = sc.next();
+        System.out.print("상품 가격 > ");
+        int goodsPrice = sc.nextInt();
+        System.out.print("상품 상세 > ");
+        String goodsDetail = sc.next();
+        boolean update = goodsRepository.update(goodsId, goodsName, category, goodsPrice, goodsDetail);
+        if (update) {
+            System.out.println("수정 완료");
+        } else {
+            System.out.println("ID가 일치하지 않습니다.");
         }
     }
 }
