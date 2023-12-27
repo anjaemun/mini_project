@@ -1,11 +1,14 @@
 package ShoppingMall;
 
+import ShoppingMall.Service.AdminService;
+import ShoppingMall.Service.MemberService;
+
 import java.util.Scanner;
 
 public class MainController {
     public static void main(String[] args) {
-        AdminMenu adminMenu = new AdminMenu();
-        MemberMenu memberMenu = new MemberMenu();
+        AdminService adminService = new AdminService();
+        MemberService memberService = new MemberService();
         Scanner sc = new Scanner(System.in);
         boolean run = true;
         int sel;
@@ -17,9 +20,9 @@ public class MainController {
             System.out.print(" > ");
             sel = sc.nextInt();
             if (sel == 1) {
-                adminMenu.mainMenu();
+                adminService.mainMenu();
             } else if (sel == 2) {
-                memberMenu.mainMenu();
+                memberService.mainMenu();
             } else {
                 run = false;
             }
