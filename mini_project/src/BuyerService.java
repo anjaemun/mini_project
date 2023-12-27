@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class BuyerService {
     Scanner sc = new Scanner(System.in);
+    public static String loginId = null;
     BuyerRepository buyerRepository = new BuyerRepository();
 
     public void buyerMenu() {
@@ -46,5 +47,20 @@ public class BuyerService {
             System.out.println("회원가입 실패");
         }
 
+    }
+
+    public void login() {
+        System.out.println("로그인");
+        System.out.print("ID > ");
+        String id = sc.next();
+        System.out.print("PW > ");
+        String password = sc.next();
+        boolean login = buyerRepository.login(id, password);
+        if (login){
+            System.out.println("로그인 성공");
+            loginId = id;
+        }else{
+            System.out.println("입력 정보가 올바르지 않습니다.");
+        }
     }
 }
