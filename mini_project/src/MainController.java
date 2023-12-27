@@ -17,7 +17,7 @@ public class MainController {
             } else if (sel == 2) {
                 buyerService.login();
             } else if (sel == 3) {
-//            adminService.login();
+            adminService.login();
             } else if (sel == 4) {
                 run = false;
             }
