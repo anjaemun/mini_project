@@ -19,7 +19,7 @@ public class MainController {
             if (sel == 1) {
                 adminMenu.mainMenu();
             } else if (sel == 2) {
-
+                memberMenu.mainMenu();
             } else {
                 run = false;
             }

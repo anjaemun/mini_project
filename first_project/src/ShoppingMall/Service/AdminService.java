@@ -1,6 +1,7 @@
 package ShoppingMall.Service;
 
 import ShoppingMall.DTO.AdminDTO;
+import ShoppingMall.LoginCheck;
 import ShoppingMall.Repository.AdminRepository;
 
 import java.util.ArrayList;
@@ -28,5 +29,19 @@ public class AdminService {
             System.out.println("회원가입 실패");
         }
 
+    }
+
+    public void adminLogin() {
+        System.out.println("관리자 로그인입니다.");
+        System.out.print("ID > ");
+        String adminId = sc.next();
+        System.out.print("PW > ");
+        String adminPassword = sc.next();
+        boolean login = adminRepository.adminLogin(adminId, adminPassword);
+        if (login) {
+            System.out.println(LoginCheck.adminLoginId + "님 환영합니다.");
+        } else {
+            System.out.println("입력 정보가 일치하지 않습니다.");
+        }
     }
 }
