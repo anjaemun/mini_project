@@ -18,13 +18,38 @@ public class BuyerService {
             } else if (sel == 2) {
                 goodsSearch();
             } else if (sel == 3) {
+                category();
+            } else if (sel == 4) {
+
+            } else if (sel == 0) {
+                run = false;
+            } else {
+                System.out.println("존재하지 않는 페이지입니다.");
+            }
+        }
+    }
+
+    private void category() {
+        int sel;
+        boolean run = true;
+        while (run) {
+            System.out.println("========================================================");
+            System.out.println("| 1.상의 | 2.하의 | 3.아우터 | 4.신발 | 5. 악세사리 | 0. 종료 |");
+            System.out.println("========================================================");
+            System.out.print(" > ");
+            sel = sc.nextInt();
+            if (sel == 1) {
+
+            } else if (sel == 2) {
+
+            } else if (sel == 3) {
 
             } else if (sel == 4) {
 
             } else if (sel == 5) {
+
+            } else if (sel == 0) {
                 run = false;
-            } else {
-                System.out.println("존재하지 않는 페이지입니다.");
             }
         }
     }
@@ -41,9 +66,9 @@ public class BuyerService {
         System.out.print("검색어 > ");
         String searchWord = sc.next();
         AdminDTO buyerDTO = buyerRepository.search(searchWord);
-        if (buyerDTO != null){
+        if (buyerDTO != null) {
             System.out.println("buyerDTO = " + buyerDTO);
-        }else{
+        } else {
             System.out.println("검색 결과가 없습니다.");
         }
     }
