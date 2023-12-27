@@ -35,7 +35,7 @@ public class AdminService {
             } else if (sel == 2) {
                 goodsList();
             } else if (sel == 3) {
-
+                goodsUpdate();
             } else if (sel == 4) {
 
             } else if (sel == 5) {
@@ -49,15 +49,6 @@ public class AdminService {
             } else {
                 System.out.println("다시 입력하세요.");
             }
-        }
-    }
-
-    private void goodsList() {
-        List<AdminDTO> adminDTO1 = adminRepository.goodsList();
-        if (!adminDTO1.isEmpty()){
-            System.out.println("adminDTO1 = " + adminDTO1);
-        }else{
-            System.out.println("상품이 없습니다.");
         }
     }
 
@@ -77,5 +68,30 @@ public class AdminService {
             System.out.println("등록 실패");
         }
 
+    }
+    private void goodsList() {
+        List<AdminDTO> adminDTO1 = adminRepository.goodsList();
+        if (!adminDTO1.isEmpty()) {
+            System.out.println("adminDTO1 = " + adminDTO1);
+        } else {
+            System.out.println("상품이 없습니다.");
+        }
+    }
+    private void goodsUpdate() {
+        System.out.println("상품 수정");
+        System.out.print("수정할 상품 ID > ");
+        Long goodsId = sc.nextLong();
+        System.out.print("수정할 상품명 > ");
+        String goodsName = sc.next();
+        System.out.print("수정할 상품 가격 > ");
+        int goodsPrice = sc.nextInt();
+        System.out.print("수정할 상품 상세 > ");
+        String goodsDetails = sc.next();
+        boolean adminDTO1 = adminRepository.goodsUpdate(goodsId, goodsName, goodsPrice, goodsDetails);
+        if (adminDTO1) {
+            System.out.println("수정 완료");
+        } else {
+            System.out.println("수정 실패");
+        }
     }
 }

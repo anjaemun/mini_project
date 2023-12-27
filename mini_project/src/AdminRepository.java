@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdminRepository {
-    List<AdminDTO> adminDTOList = new ArrayList<>();
     List<AdminDTO> adminDTOS = new ArrayList<>();
 
     public boolean login(String adminId, String adminPassword) {
@@ -19,6 +18,19 @@ public class AdminRepository {
 
     public List<AdminDTO> goodsList() {
         return adminDTOS;
+    }
+
+    public Boolean goodsUpdate(Long goodsId, String goodsName, int goodsPrice, String goodsDeatils) {
+        boolean adminDTO1 = false;
+        for (AdminDTO adminDTO : adminDTOS) {
+            if (goodsId.equals(adminDTO.getGoodsId())) {
+                adminDTO.setGoodsName(goodsName);
+                adminDTO.setGoodsPrice(goodsPrice);
+                adminDTO.setGoodsDetails(goodsDeatils);
+                adminDTO1 = true;
+            }
+        }
+        return adminDTO1;
     }
 }
 

@@ -1,6 +1,7 @@
 public class AdminDTO {
     private String id;
     private String password;
+    private Long goodsId;
 
     private String goodsName;
     private int goodsPrice;
@@ -9,13 +10,24 @@ public class AdminDTO {
 
 
     public static String idValue = "admin";
-public static String passwordValue = "1234";
+    public static String passwordValue = "1234";
+    public static Long goodsIdValue = 1L;
+
     public AdminDTO() {
         this.id = idValue;
         this.password = passwordValue;
     }
 
+    public Long getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(Long goodsId) {
+        this.goodsId = goodsId;
+    }
+
     public AdminDTO(String goodsName, int goodsPrice, String goodsDetails) {
+        this.goodsId = goodsIdValue++;
         this.goodsName = goodsName;
         this.goodsPrice = goodsPrice;
         this.goodsDetails = goodsDetails;
@@ -24,8 +36,7 @@ public static String passwordValue = "1234";
     @Override
     public String toString() {
         return "AdminDTO{" +
-                "id='" + id + '\'' +
-                ", password='" + password + '\'' +
+                "goodsId=" + goodsId +
                 ", goodsName='" + goodsName + '\'' +
                 ", goodsPrice=" + goodsPrice +
                 ", goodsDetails='" + goodsDetails + '\'' +
