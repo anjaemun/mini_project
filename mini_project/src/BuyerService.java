@@ -8,10 +8,9 @@ public class BuyerService {
     public void buyerMenu() {
         boolean run = true;
         while (run) {
-
-            System.out.println("======================================================");
-            System.out.println("| 1.회원 가입 | 2.로그인 | 3.상품 검색 | 4.카테고리 | 5.종료 |");
-            System.out.println("======================================================");
+            System.out.println("=============================================");
+            System.out.println("| 1.마이페이지 | 2.상품 검색 | 3.카테고리 | 0.종료 |");
+            System.out.println("=============================================");
             System.out.print("메뉴 선택 > ");
             int sel = sc.nextInt();
             if (sel == 1) {
@@ -38,15 +37,17 @@ public class BuyerService {
         String password = sc.next();
         System.out.print("전화번호 > ");
         String mobile = sc.next();
-        BuyerDTO buyerDTO = new BuyerDTO(id, password, mobile);
+        BuyerDTO buyerDTO = new BuyerDTO(id, password, mobile, 0);
         boolean join = buyerRepository.join(buyerDTO);
         if (join) {
             System.out.println("회원가입 완료");
             System.out.println("감사의 의미로 1,000 point 지급!");
+            int point = buyerDTO.getPoint();
+            point += point;
+            buyerDTO.setPoint(point);
         } else {
             System.out.println("회원가입 실패");
         }
-
     }
 
     public void login() {
@@ -56,10 +57,11 @@ public class BuyerService {
         System.out.print("PW > ");
         String password = sc.next();
         boolean login = buyerRepository.login(id, password);
-        if (login){
+        if (login) {
             System.out.println("로그인 성공");
             loginId = id;
-        }else{
+            buyerMenu();
+        } else {
             System.out.println("입력 정보가 올바르지 않습니다.");
         }
     }

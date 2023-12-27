@@ -2,6 +2,7 @@ public class BuyerDTO {
     private String id;
     private String password;
     private String mobile;
+    private int point;
 
     @Override
     public String toString() {
@@ -9,13 +10,15 @@ public class BuyerDTO {
                 "id='" + id + '\'' +
                 ", password='" + password + '\'' +
                 ", mobile='" + mobile + '\'' +
+                ", point=" + point +
                 '}';
     }
 
-    public BuyerDTO(String id, String password, String mobile) {
+    public BuyerDTO(String id, String password, String mobile, int point) {
         this.id = id;
         this.password = password;
         this.mobile = mobile;
+        this.point = point;
     }
 
     public String getId() {
@@ -40,5 +43,13 @@ public class BuyerDTO {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
+    }
+
+    public int getPoint() {
+        return point;
     }
 }
