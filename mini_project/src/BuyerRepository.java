@@ -3,6 +3,7 @@ import java.util.List;
 
 public class BuyerRepository {
     List<BuyerDTO> buyerDTOList = new ArrayList<>();
+    List<AdminDTO> adminDTOList = new ArrayList<>();
 
     public boolean join(BuyerDTO buyerDTO) {
 
@@ -26,5 +27,15 @@ public class BuyerRepository {
             }
         }
         return buyerDTO1;
+    }
+
+    public AdminDTO search(String searchWord) {
+        AdminDTO result = null;
+        for (AdminDTO adminDTO : adminDTOList) {
+            if (adminDTO.getGoodsName().contains(searchWord)){
+                result = adminDTO;
+            }
+        }
+        return result;
     }
 }

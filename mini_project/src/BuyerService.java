@@ -16,7 +16,7 @@ public class BuyerService {
             if (sel == 1) {
                 myPage();
             } else if (sel == 2) {
-
+                goodsSearch();
             } else if (sel == 3) {
 
             } else if (sel == 4) {
@@ -31,8 +31,20 @@ public class BuyerService {
 
     private void myPage() {
         BuyerDTO buyerDTO = buyerRepository.myPage(loginId);
+        if (buyerDTO != null) {
+            System.out.println("buyerDTO = " + buyerDTO);
+        }
+    }
+
+    private void goodsSearch() {
+        System.out.println("상품 검색");
+        System.out.print("검색어 > ");
+        String searchWord = sc.next();
+        AdminDTO buyerDTO = buyerRepository.search(searchWord);
         if (buyerDTO != null){
             System.out.println("buyerDTO = " + buyerDTO);
+        }else{
+            System.out.println("검색 결과가 없습니다.");
         }
     }
 
