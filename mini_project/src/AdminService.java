@@ -37,7 +37,7 @@ public class AdminService {
             } else if (sel == 3) {
                 goodsUpdate();
             } else if (sel == 4) {
-
+                goodsDelete();
             } else if (sel == 5) {
 
             } else if (sel == 6) {
@@ -51,6 +51,7 @@ public class AdminService {
             }
         }
     }
+
 
     private void upload() {
         System.out.println("상품 등록");
@@ -69,14 +70,18 @@ public class AdminService {
         }
 
     }
+
     private void goodsList() {
         List<AdminDTO> adminDTO1 = adminRepository.goodsList();
         if (!adminDTO1.isEmpty()) {
-            System.out.println("adminDTO1 = " + adminDTO1);
+            for (AdminDTO adminDTO11 : adminDTO1) {
+                System.out.println("adminDTO11 = " + adminDTO11);
+            }
         } else {
             System.out.println("상품이 없습니다.");
         }
     }
+
     private void goodsUpdate() {
         System.out.println("상품 수정");
         System.out.print("수정할 상품 ID > ");
@@ -92,6 +97,18 @@ public class AdminService {
             System.out.println("수정 완료");
         } else {
             System.out.println("수정 실패");
+        }
+    }
+
+    private void goodsDelete() {
+        System.out.println("상품 삭제");
+        System.out.print("삭제할 상품 ID > ");
+        Long goodsId = sc.nextLong();
+        boolean gooddsDelete = adminRepository.goodsDelete(goodsId);
+        if (gooddsDelete) {
+            System.out.println("삭제 완료");
+        } else {
+            System.out.println("삭제 실패");
         }
     }
 }

@@ -32,6 +32,17 @@ public class AdminRepository {
         }
         return adminDTO1;
     }
+
+    public boolean goodsDelete(Long goodsId) {
+        boolean result = false;
+        for (int i = 0; i < adminDTOS.size(); i++) {
+            if (goodsId.equals(adminDTOS.get(i).getGoodsId())) {
+                adminDTOS.remove(i);
+                result = true;
+            }
+        }
+        return result;
+    }
 }
 
 
