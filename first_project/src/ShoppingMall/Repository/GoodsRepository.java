@@ -24,7 +24,7 @@ public class GoodsRepository {
                 goodsDTO.setCategory(category);
                 goodsDTO.setGoodsPrice(goodsPrice);
                 goodsDTO.setGoodsDetail(goodsDetail);
-                return true;
+                result = true;
             }
         }
         return result;
@@ -39,6 +39,16 @@ public class GoodsRepository {
             }
         }
         return result;
+    }
+
+    public List<GoodsDTO> categoryClass(String category1) {
+        List<GoodsDTO> goodsDTOS = new ArrayList<>();
+        for (GoodsDTO goodsDTO : goodsDTOList) {
+            if (category1.equals(goodsDTO.getCategory())) {
+                goodsDTOS.add(goodsDTO);
+            }
+        }
+        return goodsDTOS;
     }
 }
 

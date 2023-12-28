@@ -67,6 +67,7 @@ public class AdminService {
             } else if (sel == 7) {
                 delivery();
             } else if (sel == 0) {
+                LoginCheck.adminLoginId = null;
                 run = false;
             }
         }
