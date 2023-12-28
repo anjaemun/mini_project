@@ -1,17 +1,18 @@
 package ShoppingMall.Service;
 
-import ShoppingMall.DTO.AdminDTO;
-import ShoppingMall.DTO.GoodsDTO;
+import ShoppingMall.DTO.*;
 import ShoppingMall.LoginCheck;
-import ShoppingMall.Repository.AdminRepository;
-import ShoppingMall.Repository.GoodsRepository;
+import ShoppingMall.Repository.*;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class AdminService {
     GoodsRepository goodsRepository = new GoodsRepository();
+    PaymentRepository paymentRepository = new PaymentRepository();
     AdminRepository adminRepository = new AdminRepository();
+    AccountRepository accountRepository = new AccountRepository();
+    DeliveryRepository deliveryRepository = new DeliveryRepository();
     Scanner sc = new Scanner(System.in);
 
     boolean run = true;
@@ -46,7 +47,7 @@ public class AdminService {
             System.out.println("4.상품 삭제");
             System.out.print("5.주문 목록\t");
             System.out.print("6.입금 내역\t");
-            System.out.print("7.발송 처리\t");
+            System.out.print("7.배송 업무\t");
             System.out.println("0.이전 메뉴");
             System.out.println("=============================================================");
             System.out.print(" > ");
@@ -60,19 +61,22 @@ public class AdminService {
             } else if (sel == 4) {
                 goodsDelete();
             } else if (sel == 5) {
-
+                orderList();
             } else if (sel == 6) {
-
+                depositList();
             } else if (sel == 7) {
-
+                delivery();
             } else if (sel == 0) {
                 run = false;
             }
         }
     }
 
+
+
+
     public void adminJoin() {
-        System.out.println("관리자 회원가입입니다.");
+        System.out.println("=====Admin Join=====");
         System.out.print("사용할 ID > ");
         String adminId = sc.next();
         System.out.print("사용할 PW > ");
@@ -90,7 +94,7 @@ public class AdminService {
     }
 
     public void adminLogin() {
-        System.out.println("관리자 로그인입니다.");
+        System.out.println("=====Admin Login=====");
         System.out.print("ID > ");
         String adminId = sc.next();
         System.out.print("PW > ");
@@ -105,7 +109,7 @@ public class AdminService {
     }
 
     public void goodsUpload() {
-        System.out.println("상품 등록입니다.");
+        System.out.println("=====Goods Upload=====");
         System.out.print("상품명 > ");
         String goodsName = sc.next();
         System.out.print("카테고리 > ");
@@ -124,7 +128,7 @@ public class AdminService {
     }
 
     public void goodsList() {
-        System.out.println("상품 목록입니다.");
+        System.out.println("=====Goods List=====");
         List<GoodsDTO> goodsDTOList = goodsRepository.goodsList();
         if (!goodsDTOList.isEmpty()) {
             for (GoodsDTO goodsDTO : goodsDTOList) {
@@ -136,7 +140,7 @@ public class AdminService {
     }
 
     private void goodsUpdate() {
-        System.out.println("상품 수정입니다.");
+        System.out.println("=====Goods Update=====");
         System.out.print("수정할 상품 ID > ");
         Long goodsId = sc.nextLong();
         System.out.print("상품명 > ");
@@ -156,7 +160,7 @@ public class AdminService {
     }
 
     private void goodsDelete() {
-        System.out.println("상품 삭제입니다.");
+        System.out.println("=====Goods Delete=====");
         System.out.print("삭제할 상품 ID > ");
         Long goodsId = sc.nextLong();
         boolean delete = goodsRepository.goodsDelete(goodsId);
@@ -166,4 +170,45 @@ public class AdminService {
             System.out.println("ID가 일치하지 않습니다.");
         }
     }
+
+    private void orderList() {
+        System.out.println("=====Order List=====");
+        List<OrderDTO> orderDTOList = paymentRepository.orderList();
+        if (!orderDTOList.isEmpty()) {
+            for (OrderDTO orderDTO : orderDTOList) {
+                System.out.println("orderDTO = " + orderDTO);
+            }
+        } else {
+            System.out.println("주문 내역이 없습니다.");
+        }
+    }
+
+    private void depositList() {
+        System.out.println("=====Deposit List=====");
+        List<AccountDTO> accountDTOList = accountRepository.depositList();
+        if (!accountDTOList.isEmpty()) {
+            for (AccountDTO accountDTO : accountDTOList) {
+                System.out.println("accountDTO = " + accountDTO);
+            }
+        } else {
+            System.out.println("입금 내역이 없습니다.");
+        }
+    }
+
+    private void delivery() {
+        System.out.println("=====Delivery Current=====");
+        System.out.print("배송할 상품 ID > ");
+        Long id = sc.nextLong();
+//        DeliveryDTO deliveryDTO = new DeliveryDTO();
+        List<OrderDTO> deliveryDTOList = deliveryRepository.delivery(id);
+        if (!deliveryDTOList.isEmpty()) {
+            System.out.println("배송 출발");
+            for (OrderDTO orderDTO : deliveryDTOList) {
+                System.out.println("orderDTO = " + orderDTO);
+            }
+        } else {
+            System.out.println("해당 주문 내역이 없습니다.");
+        }
+    }
 }
+
