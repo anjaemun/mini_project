@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class AccountDTO {
-    private String accountNumber;
+
     private String name;
     private int deposit;
     private int withdraw;
@@ -13,7 +13,6 @@ public class AccountDTO {
     @Override
     public String toString() {
         return "AccountDTO{" +
-                "accountNumber='" + accountNumber + '\'' +
                 ", name='" + name + '\'' +
                 ", deposit=" + deposit +
                 ", withdraw=" + withdraw +
@@ -21,20 +20,11 @@ public class AccountDTO {
                 '}';
     }
 
-    public AccountDTO(String accountNumber, String name, int deposit, int withdraw) {
-        this.accountNumber = accountNumber;
+    public AccountDTO(String name, int deposit, int withdraw) {
         this.name = name;
         this.deposit = deposit;
         this.withdraw = withdraw;
         this.bankingAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yy.MM.dd.HH:mm"));
-    }
-
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
     }
 
     public String getName() {

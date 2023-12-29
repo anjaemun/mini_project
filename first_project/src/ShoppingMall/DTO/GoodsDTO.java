@@ -6,8 +6,11 @@ public class GoodsDTO {
     private String category;
     private int goodsPrice;
     private String goodsDetail;
+    private int totalQuan;
+    private int totalPrice;
 
     public static Long idValue = 1L;
+    public static int totalQuanValue = 1;
 
     public GoodsDTO(String goodsName, String category, int goodsPrice, String goodsDetail) {
         this.id = idValue++;
@@ -15,6 +18,8 @@ public class GoodsDTO {
         this.category = category;
         this.goodsPrice = goodsPrice;
         this.goodsDetail = goodsDetail;
+        this.totalQuan = totalQuanValue++;
+        this.totalPrice += goodsPrice;
     }
 
     @Override
@@ -26,6 +31,30 @@ public class GoodsDTO {
                 ", goodsPrice=" + goodsPrice +
                 ", goodsDetail='" + goodsDetail + '\'' +
                 '}';
+    }
+
+    public int getTotalQuan() {
+        return totalQuan;
+    }
+
+    public void setTotalQuan(int totalQuan) {
+        this.totalQuan = totalQuan;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public static int getTotalQuanValue() {
+        return totalQuanValue;
+    }
+
+    public static void setTotalQuanValue(int totalQuanValue) {
+        GoodsDTO.totalQuanValue = totalQuanValue;
     }
 
     public Long getId() {

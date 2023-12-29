@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GoodsRepository {
-    List<GoodsDTO> goodsDTOList = new ArrayList<>();
+    public static List<GoodsDTO> goodsDTOList = new ArrayList<>();
+    public static List<GoodsDTO> cart = new ArrayList<>();
 
     public boolean goodsUpload(GoodsDTO goodsDTO) {
         return goodsDTOList.add(goodsDTO);
@@ -50,5 +51,30 @@ public class GoodsRepository {
         }
         return goodsDTOS;
     }
+
+
+    public GoodsDTO check(Long sel) {
+        GoodsDTO goodsDTO1 = null;
+        for (GoodsDTO goodsDTO : goodsDTOList) {
+            if (sel.equals(goodsDTO.getId())) {
+                goodsDTO1 = goodsDTO;
+            }
+        }
+        return goodsDTO1;
+    }
+
+    public List<GoodsDTO> contain(Long sel) {
+        for (GoodsDTO goodsDTO : goodsDTOList) {
+            if (sel.equals(goodsDTO.getId())) {
+                cart.add(goodsDTO);
+            }
+        }
+        return cart;
+    }
+
+    public List<GoodsDTO> cart() {
+        return cart;
+    }
+
 }
 

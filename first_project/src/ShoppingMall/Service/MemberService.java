@@ -1,9 +1,11 @@
 package ShoppingMall.Service;
 
+import ShoppingMall.DTO.AccountDTO;
 import ShoppingMall.DTO.GoodsDTO;
 import ShoppingMall.DTO.MemberDTO;
 import ShoppingMall.DTO.OrderDTO;
 import ShoppingMall.LoginCheck;
+import ShoppingMall.Repository.AccountRepository;
 import ShoppingMall.Repository.GoodsRepository;
 import ShoppingMall.Repository.MemberRepository;
 
@@ -14,6 +16,7 @@ public class MemberService {
     Scanner sc = new Scanner(System.in);
     MemberRepository memberRepository = new MemberRepository();
     GoodsRepository goodsRepository = new GoodsRepository();
+    AccountRepository accountRepository = new AccountRepository();
 
 
     public void mainMenu() {
@@ -53,13 +56,14 @@ public class MemberService {
             } else if (sel == 2) {
                 category();
             } else if (sel == 3) {
-
+                cart();
             } else if (sel == 0) {
                 LoginCheck.memberLoginId = null;
                 run = false;
             }
         }
     }
+
 
     private void category() {
         System.out.println("=====Category=====");
@@ -163,6 +167,12 @@ public class MemberService {
             for (GoodsDTO dto : goodsDTO) {
                 System.out.println("goodsDTO = " + dto);
             }
+            System.out.println("담고 싶은 상품 ID > ");
+            Long sel = sc.nextLong();
+            List<GoodsDTO> cart = goodsRepository.contain(sel);
+            if (!cart.isEmpty()) {
+                System.out.println("담기 완료");
+            }
         } else {
             System.out.println("상의가 없습니다.");
         }
@@ -175,6 +185,12 @@ public class MemberService {
         if (!goodsDTO.isEmpty()) {
             for (GoodsDTO goodsDTO1 : goodsDTO) {
                 System.out.println("goodsDTO1 = " + goodsDTO1);
+                System.out.println("담고 싶은 상품 ID > ");
+                Long sel = sc.nextLong();
+                List<GoodsDTO> cart = goodsRepository.contain(sel);
+                if (!cart.isEmpty()) {
+                    System.out.println("담기 완료");
+                }
             }
         } else {
             System.out.println("하의가 없습니다.");
@@ -189,6 +205,12 @@ public class MemberService {
         if (!goodsDTO.isEmpty()) {
             for (GoodsDTO goodsDTO1 : goodsDTO) {
                 System.out.println("goodsDTO1 = " + goodsDTO1);
+                System.out.println("담고 싶은 상품 ID > ");
+                Long sel = sc.nextLong();
+                List<GoodsDTO> cart = goodsRepository.contain(sel);
+                if (!cart.isEmpty()) {
+                    System.out.println("담기 완료");
+                }
             }
         } else {
             System.out.println("아우터가 없습니다.");
@@ -203,10 +225,27 @@ public class MemberService {
         if (!goodsDTO.isEmpty()) {
             for (GoodsDTO goodsDTO1 : goodsDTO) {
                 System.out.println("goodsDTO1 = " + goodsDTO1);
+                System.out.println("담고 싶은 상품 ID > ");
+                Long sel = sc.nextLong();
+                List<GoodsDTO> cart = goodsRepository.contain(sel);
+                if (!cart.isEmpty()) {
+                    System.out.println("담기 완료");
+                }
             }
         } else {
             System.out.println("신발이 없습니다.");
         }
+    }
 
+    private void cart() {
+        System.out.println("=====Cart=====");
+        List<GoodsDTO> cart = goodsRepository.cart();
+        if (!cart.isEmpty()) {
+            for (GoodsDTO goodsDTO : cart) {
+                System.out.println("goodsDTO = " + goodsDTO);
+            }
+        } else {
+            System.out.println("내역이 존재하지 않습니다.");
+        }
     }
 }
