@@ -10,4 +10,9 @@ public class AccountRepository {
     public List<AccountDTO> depositList() {
         return accountDTOList;
     }
+
+
+    public boolean payment(Long id) {
+
+    }
 }
